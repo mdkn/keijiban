@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=shift_jis" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+<!--
+function popup(url) {
+	window.open(url, "notice", "width=550,height=350,scrollbars=1");
+}
+// -->
+</script>
+<title>掲示板</title>
+</head>
+
+<body>
+<div class="ta-c">
+<h1>掲示板</h1>
+<hr width="90%" />
+
+<div id="lnav">
+<nav>
+<ul class="clearfix">
+<li id="lnav01">
+<a href="!homepage!" target="_top">トップに戻る</a>
+</li>
+<li id="lnav02">
+<a href="!bbs_cgi!?mode=note" target="note" onclick="popup('!bbs_cgi!?mode=note')">留意事項</a>
+<li id="lnav03">
+<a href="!bbs_cgi!?mode=find">ワード検索</a>
+</li>
+<li nav="lnav04">
+<!-- past_begin -->
+<a href="!bbs_cgi!?mode=past">過去ログ</a>
+<!-- past_end -->
+</li>
+<li il="lnav05">
+<a href="!admin_cgi!">管理用</a>
+</li>
+</div>
+</ul>
+</nav>
+</div>
+<hr width="90%" />
+</div>
+<div class="setback">
+<form action="!regist_cgi!" method="post">
+<input type="hidden" name="mode" value="regist" />
+<table class="regfm">
+<tr>
+	<th>おなまえ</th>
+	<td><input type="text" name="name" size="28" value="anonymas" /></td>
+</tr><tr>
+	<th>Ｅメール</th>
+	<td><input type="text" name="email" size="28" value="!email!" /></td>
+</tr><tr>
+	<th>タイトル</th>
+	<td>
+	<div class="form-group">
+    	<input type="text" class="form-control" value="!sub!" />
+    	<input type="submit" class="btn btn-primary" value="送信する" /><input type="reset" class="btn btn-primary" value="リセット" />
+    </div>
+  </td>
+</tr><tr>
+	<th colspan="2">
+    	メッセージ<br />
+    	<textarea name="comment" cols="60" rows="7">!comment!</textarea>
+	</th>
+</tr><tr>
+	<th>参照先</th>
+	<td><input type="text" name="url" size="50" value="!url!" /></td>
+</tr><tr>
+	<th>削除キー</th>
+	<td class="small">
+    	<input type="password" name="pwd" size="8" maxlength="8" />
+		(英数字で8文字以内) &nbsp;
+		<input type="checkbox" name="cookie" value="1" checked="checked" /> クッキー保存
+	</td>
+<!-- captcha_begin -->
+</tr><tr>
+	<th>画像認証</th>
+	<td class="small">
+		<input type="text" name="captcha" size="8" style="ime-mode:inactive" maxlength="8" />
+		（右画像の数字を入力） <img src="!captcha_cgi!?!str_crypt!" class="capt" alt="投稿キー" />
+		<input type="hidden" name="str_crypt" value="!str_crypt!" />
+	</td>
+<!-- captcha_end -->
+</tr>
+</table>
+</form>
+</div>
+
+<!-- loop_begin -->
+<div class="art">
+	[<b>!num!</b>] <strong>!sub!</strong>
+	投稿者：<b>!name!</b> 投稿日：!date! &nbsp; [<a href="!bbs_cgi!?res=!num!">返信</a>]
+	<div class="com">!comment!</div>
+</div>
+<!-- loop_end -->
+
+<div class="art-end"></div>
+
+!page_btn!
+
+<div class="ta-c">
+<form action="!regist_cgi!" method="post">
+<input type="hidden" name="mode" value="dellog" />
+記事No<input type="text" name="num" size="3" />
+削除キー<input type="password" name="pwd" size="4" maxlength="8" />
+<input type="submit" value="削除" />
+</form>
+</div>
+
+</body>
+</html>
